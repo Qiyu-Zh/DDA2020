@@ -1,0 +1,91 @@
+\documentclass{article}[12]
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, fancyhdr, color, comment, graphicx, environ}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage[noend]{algpseudocode}
+\usepackage[ruled]{algorithm2e}
+
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{algorithmicx,algorithm}
+\renewcommand{\footrulewidth}{0.8pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+\title{\Large DDA 2020  \\[0.5cm]
+        \bf\Large Assignment4 Report}
+\author{\large Author: Qiyu Zhang\\ \ \\}
+\date{\large Date Last Edited: \today}
+
+
+
+\pagestyle{fancy}
+
+
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+
+\newenvironment{solution}{\textbf{Solution}}
+
+
+\lhead{Qiyu Zhang}
+\rhead{DDA 2020} 
+\chead{\textbf{Assignment2 Report}}
+
+\rfoot{Chinese University of Hong Kong, Shenzhen}
+
+
+\begin{document}
+\input{coverPage}
+\tableofcontents
+\newpage
+\section{Written Questions}
+\includegraphics[scale=0.5]{1.png}
+\newpage
+\includegraphics[scale=0.5]{2.png}
+\newpage
+
+\section{Programming Question}
+
+\subsection{Feature Engineering}
+
+
+The dataset contains 210 data points. For
+each data, the first seven columns are attributes about area, perimeter, compactness, length, width, asymmetry, and length of groove. The last column is the target clustering column. 
+
+
+\subsection{Kmeans}
+The source code is introduced below:\par
+1. we define k as the clustering number. A tolerance tol and a maximum number of iterations max\_iter.\par
+2. Initially, we define the k clusters as the first k data in our samples.\par
+3. A for loop for iterations. And it can only run max\_iter times. A dictionary called clf\_ to record the data belonging to each clusters.\par
+4. for each data, we first calculate the distance to all the k clusters and store them in 'distance' list. We find the index with the smallest distance and append the point to clf\_ \par
+5. The center of the k cluster are updated by the data in clf\_ (find average in each index).\par
+6. Check if stop the algorithm: Theoretically, the algorithm stop if the cluster never change. But to increase the robust of my code, I give an tolerance. If $\forall k \in \{1,2,...,k\}$, $\sum_i (x_i^k-x_i^{k+1})^2 < tol$, then the algorithm stops. Zero tolerance can be chosen actually.\par
+Actually, the algorithm has a predict function. The input is a data. The output will be the cluster that it belongs to.
+
+\subsection{Accelerating Kmeans}
+\subsection{GMM}
+% The source code is introduced below:\par
+% 1. define the number of clusters.\par
+% 2. gammas is a matrix to store $\gamma_k$. Weight[i] is used to approximate $P(Z_K=i)$. means[i] is used to approximate the mean of Guassian distribution for cluster i. The covar is used to approximate the covarience of the distribution. Notice that the algorithm stop if the difference between the old likelyhood and the new one is small than tolerance or it reaches the maximum number of iteration. \par
+% 3.E step starting: $\gamma_k^n=p(z^n|x^n)=\frac{P(x|z)P(z)}{ P(x|z)P(x)}$= 
+% $\frac{N(x^n|weight[k],covar[k]) \pi_k}{ N(x^n|weight[k],covar[k])}$
+
+
+\end{document}
